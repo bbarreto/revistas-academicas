@@ -5,10 +5,13 @@ const https = require('https')
 const request = require('request')
 const requestPromise = require('request-promise')
 const cheerio = require('cheerio')
+const exphbs = require('express-handlebars')
 const universidades = require('./universidades.json')
 
 /** Configurando Express */
 const app = express()
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 app.set('port', (process.env.PORT || 5000))
@@ -17,7 +20,9 @@ app.use(express.static(__dirname + '/public'))
 /** Endpoints das APIs */
 app.get('/', function(request, response) {
   // Listar universidades
-  response.send(JSON.stringify(universidades));
+  response.render('home', {
+    universidades: universidades
+  })
 })
 
 app.get('/:entity_id', function (request, response) {
@@ -53,12 +58,11 @@ app.get('/:entity_id', function (request, response) {
       magazines.push(magazine)
     });
 
-    const descriptions = page('.journalDescription')
-
-    response.send({
+    response.render('university', {
+      universidades: universidades,
       entity: universidades[request.params.entity_id],
       magazines: magazines
-    });
+    })
   }).catch(err => {
     response.send(JSON.stringify({ error: 'Unable to load '+universidades[request.params.entity_id].url, message: err.message, line: err.line }));
   });
