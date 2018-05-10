@@ -57,7 +57,11 @@ app.get('/:entity_id', function (request, response) {
 
       magazines.push(magazine)
     });
-
+    console.log({
+      universidades: universidades,
+      entity: universidades[request.params.entity_id],
+      magazines: magazines
+    });
     response.render('university', {
       universidades: universidades,
       entity: universidades[request.params.entity_id],
