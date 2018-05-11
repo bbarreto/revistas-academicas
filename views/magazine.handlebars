@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="mb-4">Revistas {{entity.title}}</h2>
+      {{#each issues}}
+        <h3>{{collection}}</h3>
+        <div class="row">
+        {{#each issues}}
+          <div class="col-md-4">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h4><a href="/{{../../entity.id}}/{{../../magazine}}/{{id}}">{{title}}</a></h4>
+                <p><a href="/{{../../entity.id}}/{{../../magazine}}/{{id}}"><img src="{{image}}" class="img-fluid" alt="{{title}}" /></a> {{description}}</p>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

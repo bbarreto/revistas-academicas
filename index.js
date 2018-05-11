@@ -52,16 +52,12 @@ app.get('/:entity_id', function (request, response) {
       }
 
       if (magazine['link']) {
-        magazine['id'] = (magazine['link']).replace(universidades[request.params.entity_id].url, '')
+        magazine['id'] = (magazine['link']).replace(universidades[request.params.entity_id].url+'/', '')
       }
 
       magazines.push(magazine)
     });
-    console.log({
-      universidades: universidades,
-      entity: universidades[request.params.entity_id],
-      magazines: magazines
-    });
+
     response.render('university', {
       universidades: universidades,
       entity: universidades[request.params.entity_id],
@@ -109,16 +105,22 @@ app.get('/:entity_id/:magazine_id', function (request, response) {
         }
       })
 
-      issues.push({[page(el).text()]: year})
+      issues.push({
+        collection: page(el).text(),
+        issues: year
+      })
     });
 
     let totalPages = parseInt(page('#issues a').last().prev().prev().text())
 
-    response.send({
+    response.render('magazine', {
+      universidades: universidades,
+      entity: universidades[request.params.entity_id],
+      magazine: request.params.magazine_id,
       issues: issues,
       page: pageNumber,
       totalPages: totalPages ? totalPages : pageNumber
-    });
+    })
   }).catch(err => {
     response.send(JSON.stringify({ error: 'Unable to load '+universidades[request.params.entity_id].url, message: err.message, line: err.line }));
   });
@@ -183,7 +185,11 @@ app.get('/:entity_id/:magazine_id/:issue_id', function (request, response) {
       magazine.content.push(section)
     });
 
-    response.send(magazine);
+    response.render('articles', {
+      universidades: universidades,
+      entity: universidades[request.params.entity_id],
+      magazine: magazine
+    })
   }).catch(err => {
     response.send(JSON.stringify({ error: 'Unable to load '+universidades[request.params.entity_id].url, message: err.message, line: err.line }));
   });

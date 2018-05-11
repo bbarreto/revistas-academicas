@@ -1,15 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2 class="mb-4">{{entity.title}}</h2>
+      <h2 class="mb-4">Revistas {{entity.title}}</h2>
+      <ul>
       {{#each magazines}}
-      <div class="card mb-2">
-        <div class="card-body">
-          <h3><a href="/{{entity.id}}/{{id}}">{{title}}</a></h3>
-          <p>{{description}}</p>
-        </div>
-      </div>
+        <li><a href="/{{../entity.id}}/{{id}}">{{title}}</a></li>
       {{/each}}
+      </ul>
     </div>
   </div>
 </div>
