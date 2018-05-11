@@ -10,7 +10,10 @@
             <div class="card mb-2">
               <div class="card-body">
                 <h4><a href="/{{../../entity.id}}/{{../../magazine}}/{{id}}">{{title}}</a></h4>
-                <p><a href="/{{../../entity.id}}/{{../../magazine}}/{{id}}"><img src="{{image}}" class="img-fluid" alt="{{title}}" /></a> {{description}}</p>
+                <p>
+                  {{#if image}}<a href="/{{../../entity.id}}/{{../../magazine}}/{{id}}"><img src="{{image}}" class="img-fluid" alt="{{title}}" /></a>{{/if}}
+                  {{description}}
+                </p>
               </div>
             </div>
           </div>

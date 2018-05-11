@@ -4,5 +4,11 @@
     "title": "UFG",
     "url": "https://revistas.ufg.br",
     "description": "O Portal de Periódicos da UFG é um projeto da Pró-Reitoria de Pós-Graduação PRPG) em parceria com a Biblioteca Central, possui como missão a democratização e livre acesso à produção científica dos pesquisadores da UFG."
+  },
+  "ufmg": {
+    "id": "ufmg",
+    "title": "UFMG",
+    "url": "https://seer.ufmg.br/index.php",
+    "description": "O Portal de Periódicos da UFG é um projeto da Pró-Reitoria de Pós-Graduação PRPG) em parceria com a Biblioteca Central, possui como missão a democratização e livre acesso à produção científica dos pesquisadores da UFG."
   }
 }
